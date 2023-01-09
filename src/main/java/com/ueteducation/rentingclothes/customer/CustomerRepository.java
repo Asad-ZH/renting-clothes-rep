@@ -1,5 +1,22 @@
 package com.ueteducation.rentingclothes.customer;
 
-public class CustomerRepository {
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+@Repository
+@Primary
+public class CustomerRepository implements CustomerRepo {
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        // TODO connect to real db
+        return Collections.singletonList(
+                new Customer(1L, "email@gmail.com", "123")
+        );
+    }
 }
