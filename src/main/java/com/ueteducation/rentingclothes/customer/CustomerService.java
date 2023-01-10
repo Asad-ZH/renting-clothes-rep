@@ -1,5 +1,6 @@
 package com.ueteducation.rentingclothes.customer;
 
+import com.ueteducation.rentingclothes.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,6 @@ public class CustomerService {
                 .stream()
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new IllegalStateException("cusotmer not found"));
+                .orElseThrow(()-> new NotFoundException("cusotmer not found"));
     }
 }

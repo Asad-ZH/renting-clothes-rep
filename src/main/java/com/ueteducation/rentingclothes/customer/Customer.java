@@ -1,18 +1,32 @@
 package com.ueteducation.rentingclothes.customer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class Customer {
+
     private Long id;
+
+    @NotBlank
     private String name;
 
+    @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public Customer(Long id, String name, String password) {
+    @NotBlank
+    @Email
+    private String email;
+
+
+    public Customer(Long id, String name, String password, String email) {
+
         this.id = id;
         this.name = name;
         this.password = password;
+        this.email = email;
     }
     public String getName() {
         return name;
@@ -23,14 +37,22 @@ public class Customer {
         return id;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
-    @Override
-    public String toString(){
-        return "Customer" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + '}';
+    public String getEmail() {
+        return email;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
