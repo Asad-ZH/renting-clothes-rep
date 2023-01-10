@@ -12,21 +12,18 @@ import java.util.List;
 public class CustomerService {
 
     @Autowired
-    private final CustomerRepo customerRepo;
+    private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     List<Customer> getAllCustomer() {
-        return customerRepo.getAllCustomers();
+        return customerRepository.findAll();
     }
 
     Customer getCustomer(Long id) {
-        return getAllCustomer()
-                .stream()
-                .filter(customer -> customer.getId().equals(id))
-                .findFirst()
+        return customerRepository.findById(id)
                 .orElseThrow(()-> new NotFoundException("cusotmer not found"));
     }
 }

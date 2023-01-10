@@ -1,6 +1,7 @@
 package com.ueteducation.rentingclothes.customer;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -10,13 +11,9 @@ import java.util.List;
 
 @Repository
 @Primary
-public class CustomerRepository implements CustomerRepo {
+public interface CustomerRepository
+        extends JpaRepository<Customer, Long> {
 
-    @Override
-    public List<Customer> getAllCustomers() {
-        // TODO connect to real db
-        return Collections.singletonList(
-                new Customer(1L, "email@gmail.com", "123", "myemail@gmail.com")
-        );
-    }
+
+
 }

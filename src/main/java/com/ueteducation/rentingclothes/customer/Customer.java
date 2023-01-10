@@ -2,11 +2,17 @@ package com.ueteducation.rentingclothes.customer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table
 public class Customer {
 
+    @Id
     private Long id;
 
     @NotBlank
@@ -20,6 +26,8 @@ public class Customer {
     @Email
     private String email;
 
+    public Customer() {
+    }
 
     public Customer(Long id, String name, String password, String email) {
 
